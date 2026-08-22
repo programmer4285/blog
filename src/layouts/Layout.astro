@@ -23,7 +23,13 @@ const { title } = Astro.props;
 	<body>
 		<Nav />
 		<main>
-			<slot />
+			<!-- NOTE: "container" is applied to an inner <div> because it fixes width. -->
+			<!-- That way a background color can be applied to <main> if desired and it will -->
+			<!-- fill the whole page instead of leaving gaps. The same concept applies to the -->
+			<!-- Nav and Footer components. -->
+			<div class="container">
+				<slot />
+			</div>
 		</main>
 		<Footer />
 	</body>
