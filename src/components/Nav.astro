@@ -1,0 +1,23 @@
+---
+const getAriaCurrent = (
+  path: string,
+): astroHTML.JSX.AriaAttributes["aria-current"] => {
+  return path === Astro.url.pathname ? "page" : undefined;
+};
+---
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="/" aria-current={getAriaCurrent("/")}>Home</a></li>
+    </ul>
+    <ul>
+      <li>
+        <a href="/posts" aria-current={getAriaCurrent("/posts")}>Posts</a>
+      </li>
+      <li>
+        <a href="/about" aria-current={getAriaCurrent("/about")}>About</a>
+      </li>
+    </ul>
+  </nav>
+</header>
