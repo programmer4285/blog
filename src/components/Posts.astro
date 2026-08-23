@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import Layout from "../layouts/Layout.astro";
+import { slugify } from "../helpers";
+
+interface Props {
+  title: string;
+  heading: string;
+  posts: CollectionEntry<"posts">[];
+}
+
+const { title, heading, posts } = Astro.props;
+---
+
+<Layout title={title}>
+  <h1>{heading}</h1>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <article>
+            <h2 class="title">
+              <a href={`/posts/${post.id}`}>{post.data.title}</a>
+            </h2>
+            <p>{post.data.description}</p>
+            <div class="post-metadata">
+              <div>
+                <strong>Published: </strong>
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toDateString()}
+                </time>
+              </div>
+              <ul class="tags">
+                {post.data.tags.map((tag) => (
+                  <li>
+                    <a class="tag" href={`/tags/${slugify(tag)}`}>
+                      {tag}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
+
+<style>
+  /* Remove the padding allocated for the bullet point */
+  ul {
+    padding: 0;
+  }
+
+  /* Remove the bullet point. Apply to <li> to override picocss default */
+  li {
+    list-style: none;
+  }
+
+  .title > a {
+    text-decoration: none;
+  }
+
+  .post-metadata {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .tag {
+    text-decoration: none;
+    border-radius: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    margin: 0 0.15rem;
+    background-color: var(--pico-primary-background);
+    color: var(--pico-primary-inverse);
+  }
+
+  .tag:hover {
+    background-color: var(--pico-primary-hover-background);
+  }
+
+  .tags {
+    display: flex;
+  }
+</style>

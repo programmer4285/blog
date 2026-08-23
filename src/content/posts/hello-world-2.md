@@ -1,8 +1,8 @@
 ---
 title: Hello World
 description: test post
-tags: ["test", "tag", "hello", "Hello, World!"]
-pubDate: 2026-08-22
+tags: ["hello"]
+pubDate: 2026-08-23
 draft: true
 ---
 

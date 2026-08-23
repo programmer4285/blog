@@ -1,41 +1,9 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Posts from "../../components/Posts.astro";
 
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("posts");
 ---
 
-<Layout title="Posts">
-  <h1>Posts</h1>
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <article>
-            <h2>
-              <a href={`/posts/${post.id}`}>{post.data.title}</a>
-            </h2>
-            <p>{post.data.description}</p>
-            <strong>Published: </strong>
-            <time datetime={post.data.pubDate.toISOString()}>
-              {post.data.pubDate.toDateString()}
-            </time>
-          </article>
-        </li>
-      ))
-    }
-  </ul>
-</Layout>
-
-<style>
-  /* Remove the padding allocated for the bullet point */
-  ul {
-    padding: 0;
-  }
-
-  /* Remove the bullet point. Apply to <li> to override picocss default */
-  li {
-    list-style: none;
-  }
-</style>
+<Posts title="Posts" heading="Posts" posts={posts} />
