@@ -34,3 +34,18 @@ const { title } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<style>
+	/* Set the body to take 100% of the viewport height and have
+	   <main> stretch so that the footer is pinned at the bottom
+	   of the page. */
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+	}
+
+	main {
+		flex: 1;
+	}
+</style>
