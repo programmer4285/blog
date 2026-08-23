@@ -1,0 +1,65 @@
+---
+import Sun from "../assets/sun.svg";
+import Moon from "../assets/moon.svg";
+---
+
+<button id="dark-theme-btn">
+  <Moon height={20} width={20} />
+</button>
+
+<button id="light-theme-btn">
+  <Sun height={20} width={20} />
+</button>
+
+<script is:inline>
+  const theme = (() => {
+    const localStorageTheme = localStorage.getItem("theme") ?? "";
+    if (["dark", "light"].includes(localStorageTheme)) {
+      return localStorageTheme;
+    }
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+
+    return "light";
+  })();
+
+  const darkThemeBtn = document.getElementById("dark-theme-btn");
+  const lightThemeBtn = document.getElementById("light-theme-btn");
+
+  function setTheme(theme, persistToLocalStorage = true) {
+    document.documentElement.setAttribute("data-theme", theme);
+    if (persistToLocalStorage) {
+      localStorage.setItem("theme", theme);
+    }
+
+    if (darkThemeBtn) {
+      darkThemeBtn.hidden = theme === "light";
+    }
+
+    if (lightThemeBtn) {
+      lightThemeBtn.hidden = theme === "dark";
+    }
+  }
+
+  setTheme(theme, false);
+
+  darkThemeBtn?.addEventListener("click", () => {
+    setTheme("light");
+  });
+
+  lightThemeBtn?.addEventListener("click", () => {
+    setTheme("dark");
+  });
+</script>
+
+<style>
+  button {
+    padding: 0.25rem;
+  }
+
+  svg {
+    display: block;
+  }
+</style>

@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from "./ThemeToggle.astro";
+
 function getAriaCurrent(
   path: string,
 ): astroHTML.JSX.AriaAttributes["aria-current"] {
@@ -17,6 +19,9 @@ function getAriaCurrent(
       </li>
       <li>
         <a href="/tags" aria-current={getAriaCurrent("/tags")}>Tags</a>
+      </li>
+      <li>
+        <ThemeToggle />
       </li>
     </ul>
   </nav>
