@@ -1,9 +1,9 @@
 ---
-const getAriaCurrent = (
+function getAriaCurrent(
   path: string,
-): astroHTML.JSX.AriaAttributes["aria-current"] => {
+): astroHTML.JSX.AriaAttributes["aria-current"] {
   return path === Astro.url.pathname ? "page" : undefined;
-};
+}
 ---
 
 <header>
@@ -14,6 +14,9 @@ const getAriaCurrent = (
     <ul>
       <li>
         <a href="/posts" aria-current={getAriaCurrent("/posts")}>Posts</a>
+      </li>
+      <li>
+        <a href="/tags" aria-current={getAriaCurrent("/tags")}>Tags</a>
       </li>
     </ul>
   </nav>

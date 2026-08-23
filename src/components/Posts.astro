@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 
 import Layout from "../layouts/Layout.astro";
-import { slugify } from "../helpers";
+import Tag from "./Tag.astro";
 
 interface Props {
   title: string;
@@ -34,9 +34,7 @@ const { title, heading, posts } = Astro.props;
               <ul class="tags">
                 {post.data.tags.map((tag) => (
                   <li>
-                    <a class="tag" href={`/tags/${slugify(tag)}`}>
-                      {tag}
-                    </a>
+                    <Tag tag={tag} />
                   </li>
                 ))}
               </ul>
@@ -68,21 +66,8 @@ const { title, heading, posts } = Astro.props;
     justify-content: space-between;
   }
 
-  .tag {
-    text-decoration: none;
-    border-radius: 0.7rem;
-    padding: 0.2rem 0.5rem;
-    text-align: center;
-    margin: 0 0.15rem;
-    background-color: var(--pico-primary-background);
-    color: var(--pico-primary-inverse);
-  }
-
-  .tag:hover {
-    background-color: var(--pico-primary-hover-background);
-  }
-
   .tags {
     display: flex;
+    flex-wrap: wrap;
   }
 </style>

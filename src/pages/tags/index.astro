@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Tag from "../../components/Tag.astro";
+import { slugify } from "../../helpers";
+
+const posts = await getCollection("posts");
+
+const tagCounts = new Map<string, { tag: string; count: number }>();
+posts.forEach((post) =>
+  post.data.tags.forEach((tag) => {
+    const slug = slugify(tag);
+    const { count } = tagCounts.get(slug) ?? { tag, count: 0 };
+    tagCounts.set(slug, { tag, count: count + 1 });
+  }),
+);
+---
+
+<Layout title="Tags">
+  <h1>Tags</h1>
+
+  <ul>
+    {
+      tagCounts.entries().map(([_, { tag, count }]) => (
+        <li>
+          <Tag tag={tag} count={count} />
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
+
+<style>
+  ul {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  li {
+    list-style: none;
+  }
+</style>
