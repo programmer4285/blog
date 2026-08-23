@@ -1,7 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+import Github from "../assets/github.svg";
 ---
 
 <Layout title="Home">
   <h1>The Refactored Life</h1>
+  <p>
+    Welcome to The Refactored Life. My name is John, and I'm currently working
+    as a software engineer. I'm using this website to practice my writing. I
+    plan to talk about topics like programming, philosophy, and exercise. I may
+    talk about books I'm reading or even video games I'm playing. I hope you get
+    something valuable from what you find written here. Cheers.
+  </p>
+
+  <div class="icon-row">
+    <a href="https://github.com/programmer4285">
+      <Github width={32} height={32} />
+    </a>
+  </div>
 </Layout>
+
+<style>
+  .icon-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+</style>
