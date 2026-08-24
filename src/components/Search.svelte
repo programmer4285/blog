@@ -18,33 +18,24 @@
     }),
   );
 
-  let isOpen = $state(false);
-
-  let container: HTMLElement;
-
-  $effect(() => {
-    if (!isOpen) return;
-
-    function handleClick(event: MouseEvent) {
-      if (!container.contains(event.target as Node)) {
-        isOpen = false;
-      }
-    }
-
-    document.addEventListener("click", handleClick);
-
-    return () => document.removeEventListener("click", handleClick);
-  });
+  let query = $state("");
 </script>
 
-<div class="search-container" bind:this={container}>
-  <button onclick={() => (isOpen = !isOpen)}>
+<div>
+  <button popovertarget="search-bar">
     <img src={icon.src} alt="Search..." width="20" height="20" />
   </button>
 
-  {#if isOpen}
-    <input type="text" placeholder="Type to search..." />
-  {/if}
+  <div id="search-bar" popover="auto">
+    <input
+      type="text"
+      placeholder="Type to search..."
+      bind:value={query}
+      ontoggle={(e) => {
+        if (e.newState === "closed") query = "";
+      }}
+    />
+  </div>
 </div>
 
 <style>
@@ -56,15 +47,17 @@
     display: block;
   }
 
-  .search-container {
-    position: relative;
+  #search-bar {
+    margin-top: 0.5rem;
+    inset: auto;
+    position-area: bottom span-left;
+    width: 20rem;
+    max-width: 75vw;
   }
 
-  .search-container > input {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 0.5rem;
-    width: 16rem;
+  [popover] {
+    border: none;
+    background: var(--pico-background-color);
+    overflow: visible;
   }
 </style>
