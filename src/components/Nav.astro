@@ -1,4 +1,5 @@
 ---
+import SearchWrapper from "./SearchWrapper.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 
 function getAriaCurrent(
@@ -19,6 +20,9 @@ function getAriaCurrent(
       </li>
       <li>
         <a href="/tags" aria-current={getAriaCurrent("/tags")}>Tags</a>
+      </li>
+      <li>
+        <SearchWrapper />
       </li>
       <li>
         <ThemeToggle />
