@@ -88,15 +88,14 @@
     <img src={icon.src} alt="Search..." width="20" height="20" />
   </button>
 
-  <div id="search-bar" popover="auto">
-    <input
-      type="text"
-      placeholder="Type to search..."
-      bind:value={query}
-      ontoggle={(e) => {
-        if (e.newState === "closed") query = "";
-      }}
-    />
+  <div
+    id="search-bar"
+    popover="auto"
+    ontoggle={(e) => {
+      if (e.newState === "closed") query = "";
+    }}
+  >
+    <input type="text" placeholder="Type to search..." bind:value={query} />
 
     {#if results.length > 0}
       <ul class="search-results">
