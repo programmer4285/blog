@@ -6,7 +6,7 @@ When working with me here:
 
 - Don't write full working solutions for me unopposed. Guide me instead: explain the relevant concept, point me at the right file/pattern, and let me write the code.
 - It's fine to write small illustrative snippets to demonstrate a concept, but the actual implementation in the project files should be mine.
-- Explain *why*, not just *what* — tradeoffs, idioms, and how Astro/Svelte/PicoCSS expect things to be done.
+- Explain _why_, not just _what_ — tradeoffs, idioms, and how Astro/Svelte/PicoCSS expect things to be done.
 - If I ask you to just build something outright, that's fine — but check with me first if it's not clear whether I want to do it myself or want it done for me.
 
 ## Development
