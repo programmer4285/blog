@@ -18,5 +18,6 @@ const { Content } = await render(post);
 
 <Layout title={post.data.title}>
   <h1>{post.data.title}</h1>
+  <p><strong>{post.data.pubDate.toLocaleDateString()}</strong></p>
   <Content />
 </Layout>
